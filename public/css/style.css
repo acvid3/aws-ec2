@@ -28,3 +28,11 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+.github-repository {
+    color: #fff;
+}
+
+.github-repository span a {
+    color: crimson;
+}
