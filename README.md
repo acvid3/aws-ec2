@@ -98,3 +98,74 @@ After completing the setup, you can run the project using the appropriate start 
 ---
 
 Follow these instructions to successfully set up and run your project on an AWS EC2 instance.
+
+### 5. Configure Nginx for Port Redirection
+
+Set up Nginx to redirect traffic from port 80 to port 3000, where the Node.js application runs:
+
+```bash
+sudo nano /etc/nginx/nginx.conf
+```
+
+Insert the following server block inside the `http` context:
+
+```nginx
+server {
+    listen 80 default_server;
+    server_name _;
+
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+
+Save and close the file with `Ctrl + O`, `Enter`, and `Ctrl + X`. Then test and restart Nginx:
+
+```bash
+sudo nginx -t
+sudo systemctl restart nginx
+```
+
+### 6. Manage the Application with PM2
+
+Install PM2 to manage the application process:
+
+```bash
+npm install pm2@latest -g
+```
+
+Start the application with PM2:
+
+```bash
+cd ~/aws-ec2
+pm2 start server.js --name "my-app"
+pm2 save
+```
+
+Set up PM2 to boot at server startup:
+
+```bash
+pm2 startup
+```
+
+Now, the application will restart automatically if it crashes or the server reboots.
+
+### 7. Access the Application
+
+The application is now running and accessible at:
+
+[http://44.204.13.49/](http://44.204.13.49/)
+
+---
+
+By following these instructions, you will have a Node.js application running on an AWS EC2 instance, managed by PM2, and accessible via Nginx on the default HTTP port 80.
+
+Make sure to replace the placeholder text `server.js` and `"my-app"` with the actual entry point and name of your application as needed.
+
+Now you have a complete `README.md` that provides comprehensive instructions on setting up and running a Node.js application on AWS EC2 with Nginx and PM2, including how to access the deployed application.
