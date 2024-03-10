@@ -1,6 +1,6 @@
 Для создания файла `README.md` с инструкциями по настройке сервера на AWS EC2 на английском языке, вы можете использовать следующий шаблон:
 
-````markdown
+```markdown
 # AWS EC2 Server Setup Instructions
 
 This guide provides step-by-step instructions on how to set up a server on AWS EC2.
@@ -12,6 +12,7 @@ Ensure you have an AWS EC2 instance ready for setup.
 ## Steps
 
 ### 1. Install Git
+```
 
 Update your package manager and install Git:
 
@@ -19,7 +20,6 @@ Update your package manager and install Git:
 sudo yum update
 sudo yum install git
 ```
-````
 
 Verify the installation:
 
@@ -102,7 +102,3 @@ After completing the setup, you can run the project using the appropriate start 
 ---
 
 Follow these instructions to successfully set up and run your project on an AWS EC2 instance.
-
-```
-
-```
