@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 5px;
+    height: 200px;
+    width: 500px;
+}
+
+.info-section h1,
+.info-section p {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
